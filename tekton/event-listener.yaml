@@ -5,4 +5,10 @@ metadata:
 spec:
   serviceAccountName: pipeline
   triggers:
-    - triggerRef: vote-app
+  # This is causing UI crush https://issues.redhat.com/browse/ODC-5350
+  #   - triggerRef: vote-app
+    - bindings:
+        - kind: TriggerBinding
+          ref: vote-app
+      template:
+        name: vote-app
