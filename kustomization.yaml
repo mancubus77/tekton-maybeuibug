@@ -1,9 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-# Base Pipeline
+# Pipeline tasks
 - tekton/task-apply-manifest.yaml
 - tekton/task-update-deployment.yaml
+
+# Ansible task
+- tekton/rbac.yaml
+- tekton/task-ansible-runner.yaml
+- tekton/pvc.yaml
+
+# Pipeline
 - tekton/pipeline.yaml
 
 # Pipeline triggers
